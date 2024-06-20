@@ -5,11 +5,13 @@ for (var i = 0; i < num; i++) {
   drum[i].addEventListener("click", function () {
     var btnInner = this.innerHTML;
     makeSound(btnInner);
+    btnAnimation(btnInner);
   });
 }
 
 document.addEventListener("keypress", function (event) {
   makeSound(event.key);
+  btnAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -52,4 +54,12 @@ function makeSound(key) {
     default:
       console.log(btnInner);
   }
+}
+
+function btnAnimation(key) {
+  var activeBtn = document.querySelector("." + key);
+  activeBtn.classList.add("pressed");
+  setTimeout(function () {
+    activeBtn.classList.remove("pressed");
+  }, 500);
 }
